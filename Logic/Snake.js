@@ -5,18 +5,27 @@
 'use strict';
 var SnakeNS = SnakeNS || {};
 
-SnakeNS.Snake = function(name, coords, color, speed, controls, direction, renderer) {
-	this.name = name;
-	this.coords = coords;
-	this.color = color;
-	this.speed = speed;
-	this.controls = controls;
-	this.direction = direction;
-	this.renderer = renderer;
-	this.points = 0;
-};
+// SnakeNS.Snake = function(name, coords, color, speed, controls, direction, renderer) {
+// 	this.name = name;
+// 	this.coords = coords;
+// 	this.color = color;
+// 	this.speed = speed;
+// 	this.controls = controls;
+// 	this.direction = direction;
+// 	this.renderer = renderer;
+// 	this.points = 0;
+// };
 
-SnakeNS.Snake.prototype = (function() {
+module.exports = function(name, coords, color, speed, controls, direction, renderer) {
+	var name = name;
+	var coords = coords;
+	var color = color;
+	var speed = speed;
+	var controls = controls;
+	var direction = direction;
+	var renderer = renderer;
+	var points = 0;
+
 	var crashIntoWall = function() {
 		alert("game over");
 		return true;
@@ -114,4 +123,4 @@ SnakeNS.Snake.prototype = (function() {
 		turnUp: turnUp,
 		turnDown: turnDown
 	};
-}());
+};

@@ -1,0 +1,28 @@
+td {
+ width: 15px;
+ height: 15px;
+}
+
+#field{
+	float:left;
+}
+
+#points{
+	font-size: 20px;
+}
+
+.blank {
+	background-color: white;
+}
+
+.wall {
+	background-color: black;
+}
+
+.fruit {
+	background-color: orange;
+}
+
+.anaconda{
+	background-color: #004A7F;
+}

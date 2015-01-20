@@ -1,13 +1,9 @@
 /// <reference path="../Logic/BlockType.js" />
 
 'use strict';
-var SnakeNS = SnakeNS || {};
+ var SnakeNS = SnakeNS || {};
 
-SnakeNS.Renderer = function (classNames) {
-	this.CLASS_NAMES = classNames;
-};
-
-SnakeNS.Renderer.prototype = function () {
+module.exports = function (classNames) {
 	var renderField = function (field) {
 		var table = document.createElement("table"),
 			row,
@@ -59,4 +55,4 @@ SnakeNS.Renderer.prototype = function () {
 		renderPoints: renderPoints,
 		updatePoints: updatePoints
 	};
-}();
+};

@@ -3,13 +3,17 @@
 'use strict';
 var SnakeNS = SnakeNS || {};
 
-SnakeNS.Fruit = function(img, points, coords) {
-	this.img = img;
-	this.points = points;
-	this.coords = coords;
-};
+// SnakeNS.Fruit = function(img, points, coords) {
+// 	this.img = img;
+// 	this.points = points;
+// 	this.coords = coords;
+// };
 
-SnakeNS.Fruit.prototype = (function() {
+module.exports = function(img, points, coords) {
+	var img = img;
+	var points = points;
+	var coords = coords;
+
 	var generatePosition = function(field, snake) {
 		var newPosition = {
 			x: Math.ceil(Math.random() * field[0].length) - 1,
@@ -34,4 +38,4 @@ SnakeNS.Fruit.prototype = (function() {
 	return {
 		generatePosition: generatePosition
 	};
-}());
+};

@@ -1,7 +1,6 @@
 'use strict';
-var SnakeNS = SnakeNS || {};
 
-SnakeNS.DIRECTION = {
+ module.DIRECTION = {
 	LEFT: 0,
 	RIGHT: 1,
 	UP: 2,
