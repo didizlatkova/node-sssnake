@@ -1,13 +1,8 @@
-/// <reference path="../Logic/BlockType.js" />
-
 'use strict';
 $(document).ready(function() {
-	var SnakeNS = SnakeNS || {};
-
 	var socket = io();
 
 	socket.on('render field', function(CLASS_NAMES, field) {
-		console.log(CLASS_NAMES);
 		var table = document.createElement("table"),
 			row,
 			cell,
@@ -35,6 +30,20 @@ $(document).ready(function() {
 		pointsDiv.id = 'points';
 		pointsDiv.innerHTML = "Points: " + points;
 		document.body.appendChild(pointsDiv);
+	});
+
+	socket.on('render block', function(block, className) {
+		var cell = document.getElementById('block-' + block.x + '-' + block.y);
+		cell.className = className;
+	});
+
+	socket.on('erase block', function(block, className) {
+		var cell = document.getElementById('block-' + block.x + '-' + block.y);
+		cell.className = className;
+	});
+
+	socket.on('game over', function() {
+		alert("game over");
 	});
 
 	// module.exports = function(classNames) {

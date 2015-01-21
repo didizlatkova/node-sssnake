@@ -17,45 +17,30 @@ var field = [[1,1,1,1,1],
 			 [1,1,1,1,1]];
 
 app.get('/', function(req, res) {
-	res.sendfile('index.html');	
-	//var renderer = require('./UI/Renderer.js')(CLASS_NAMES);
-
-	
-				 
-	
-
-	//var socket = io();
-	//socket.emit('chat message', CLASS_NAMES, field);
-	//renderer.renderField(field);
-//	renderer.renderPoints(0);
-	//renderer.renderBlock(snakeBlock, SnakeNS.BLOCK_TYPE.SNAKE);
-	//renderer.renderBlock(fruitBlock, SnakeNS.BLOCK_TYPE.FRUIT);
-
-	//SnakeNS.EventHandler.setupEvents(snake);
-
-	//SnakeNS.Engine.start(snake, fruit, field);
+	res.sendfile('index.html');
 });
 
 io.on('connection', function(socket) {
 	var BLOCK_TYPE = require('BlockType');
 	var DIRECTION = require('Direction');
-	var CLASS_NAMES = [];
-	CLASS_NAMES[BLOCK_TYPE.BLANK] = 'blank';
-	CLASS_NAMES[BLOCK_TYPE.WALL] = 'wall';
-	CLASS_NAMES[BLOCK_TYPE.FRUIT] = 'fruit';
-	CLASS_NAMES[BLOCK_TYPE.SNAKE] = "anaconda";
+	var engine = require('Engine');
+	var CLASS_NAMES = require('ClassNames');
 
 	var snakeBlock = {x:1, y:1};
 	var fruitBlock = {x:3, y:3};
 	var Snake = require('Snake');
+	
 	var Fruit = require('Fruit');
-	var snake = new Snake(CLASS_NAMES[BLOCK_TYPE.SNAKE], [snakeBlock], "#004A7F", 600, {left:37, right:39, up: 38, down:40}, DIRECTION.RIGHT, null);
+	var snake = new Snake(CLASS_NAMES[BLOCK_TYPE.SNAKE], [snakeBlock], "#004A7F", 600, {left:37, right:39, up: 38, down:40}, DIRECTION.RIGHT, socket);
 	var fruit = new Fruit("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQf9vdIFkIrxbLdNFeg3_HWWmlM3-IvNSQ9ho28jHvrNg6q5r3C", 10, fruitBlock);
-
+	
 	socket.emit('render field', CLASS_NAMES, field);
-	socket.emit('render points');
+	socket.emit('render points', 0);
+	socket.emit('render block', snakeBlock, CLASS_NAMES[BLOCK_TYPE.SNAKE]);
+	socket.emit('render block', fruitBlock, CLASS_NAMES[BLOCK_TYPE.FRUIT]);
+	engine.start(snake, fruit, field);
 });
 
 http.listen(3000, function() {
-	console.log('listening on *:3000');
+	console.log('listening on port 3000');
 });
