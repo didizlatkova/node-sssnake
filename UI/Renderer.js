@@ -1,6 +1,6 @@
 'use strict';
 $(document).ready(function() {
-	var socket = io();
+	//var socket = io();
 
 	socket.on('render field', function(CLASS_NAMES, field) {
 		var table = document.createElement("table"),
@@ -46,38 +46,7 @@ $(document).ready(function() {
 		alert("game over");
 	});
 
-	// module.exports = function(classNames) {
-	// 	var renderField = function(field) {
-
-	// 		},
-
-	// 		renderBlock = function(block, blockType) {
-	// 			var cell = document.getElementById('block-' + block.x + '-' + block.y);
-	// 			cell.className = this.CLASS_NAMES[blockType];
-	// 		},
-
-	// 		renderPoints = function(points) {
-	// 			var pointsDiv = document.createElement("div");
-	// 			pointsDiv.id = 'points';
-	// 			pointsDiv.innerHTML = "Points: " + points;
-	// 			document.body.appendChild(pointsDiv);
-	// 		},
-
-	// 		updatePoints = function(points) {
-	// 			document.getElementById('points').innerHTML = "Points: " + points;
-	// 		},
-
-	// 		eraseBlock = function(block) {
-	// 			var cell = document.getElementById('block-' + block.x + '-' + block.y);
-	// 			cell.className = this.CLASS_NAMES[SnakeNS.BLOCK_TYPE.BLANK];
-	// 		}
-
-	// 	return {
-	// 		renderField: renderField,
-	// 		eraseBlock: eraseBlock,
-	// 		renderBlock: renderBlock,
-	// 		renderPoints: renderPoints,
-	// 		updatePoints: updatePoints
-	// 	};
-	// };
+	socket.on('update points', function(points) {
+		document.getElementById('points').innerHTML = "Points: " + points;
+	});
 });
